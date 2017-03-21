@@ -5,12 +5,14 @@
 ##tables
 
 ###users
+
 | column | type   |
 |:------:|:------:|
 |  name  | string |
 | idname | string |
 
 ###messages
+
 | column | type  |foreign_key|
 |:------:|:-----:|:---------:|
 | body   | text  |           |
@@ -19,11 +21,13 @@
 | user_id  | references |true|
 
 ###groups
+
 | column | type | unique | null |
 |:------:|:----:|:------:|:----:|
 |  name  | string| true  | false|
 
 ###users_groups
+
 | column | type     | foreign_key  |
 |:------:|:--------:|:------------:|
 |user_id |references| true         |
