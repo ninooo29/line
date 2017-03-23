@@ -1,0 +1,17 @@
+
+ul {
+  background-color: #778899;
+  display: table;
+  table-layout: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+ul li {
+  display: table-cell;
+  vertical-align: middle;
+  height: 40px;
+}
+
+
+
