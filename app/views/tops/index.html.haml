@@ -1,1 +1,49 @@
 
+- if user_signed_in?
+  .header
+    %ul.tabnav
+      %li
+        = link_to "#tab01" do
+          %i.fa.fa-user.fa-2x
+      %li
+        = link_to "tab2" do
+          %i.fa.fa-commenting.fa-2x
+      %li
+        = link_to "#tab03" do
+          %i.fa.fa-clock-o.fa-2x
+      %li
+        = link_to "#tab04" do
+          %i.fa.fa-gear.fa-2x
+    = link_to "ログアウト", destroy_user_session_path, method: :delete
+
+
+#tabcontent
+  #tab01
+    .UserPage
+      .Profile
+        %ul
+          %li
+            %p プロフィール
+          %li
+            = current_user.name
+      %ul.user_friends
+        %li
+          %p 友達(#{@friends.length})
+        - if @friends.length != 0
+          - @friends.each do |friend|
+            %li.user_friend
+              = link_to user_messages_path(friend) do
+                %p.chat_frind_name
+                  = friend.name
+
+
+
+  #tab02
+    .message
+      .user_name
+      .last_message
+  #tab03
+    タブ3の内容
+  #tab04
+    タブ４だよ
+
