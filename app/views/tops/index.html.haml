@@ -15,16 +15,18 @@
         = link_to "#tab04" do
           %i.fa.fa-gear.fa-2x
     = link_to "ログアウト", destroy_user_session_path, method: :delete
+    .chat-group-form__search.clearfix
+      %input#user-search-field.chat-group-form__input{ type: "text", placeholder: "名前で検索" }
+    #user-serch-result
 
 
 #tabcontent
   #tab01
     .UserPage
-      .Profile
-        %ul
-          %li
-            %p プロフィール
-          %li
+      %ul.Profile
+        %p プロフィール
+        %li
+          = link_to edit_user_registration_path do
             = current_user.name
       %ul.user_friends
         %li
