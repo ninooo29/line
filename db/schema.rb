@@ -10,23 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323070739) do
-
-  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name",       null: false
-  end
+ActiveRecord::Schema.define(version: 20170326081917) do
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "body",       limit: 65535
+    t.string   "body"
     t.string   "image"
-    t.integer  "group_id"
+    t.integer  "login_user_id"
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["group_id", "user_id"], name: "index_messages_on_group_id_and_user_id", using: :btree
-    t.index ["group_id"], name: "index_messages_on_group_id", using: :btree
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
@@ -47,15 +39,6 @@ ActiveRecord::Schema.define(version: 20170323070739) do
     t.string   "UserId"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  end
-
-  create_table "users_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_users_groups_on_group_id", using: :btree
-    t.index ["user_id"], name: "index_users_groups_on_user_id", using: :btree
   end
 
 end
