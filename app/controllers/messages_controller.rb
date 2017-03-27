@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     # binding.pry
     if params[:user_id].present?
       # user_groups = Group_user.find_by_sql('select * from users where user_id = #{current_user.id}')
-      # receive_user_groups = Group_user.find_by_sql('select * from users where user_id = #{params[:user_id}')
+      # receive_user_groupsoup_user.find_by_sql('select * from users where user_id = #{params[:user_id}')
       # if user_groups & receive_user_groups
       # if current_user.group_users.where(user_id: params[:user_id]).blank?
       groups_one = current_user.groups
@@ -19,6 +19,8 @@ class MessagesController < ApplicationController
       end
     end
 
+    # @group = Group.group_users(user_id: params[:user_id])
+
     @messages = Message.where(user_id: params[:user_id],login_user_id: current_user.id )
     @partner = User.find(params[:user_id])
     @message = Message.new
@@ -26,7 +28,7 @@ class MessagesController < ApplicationController
 
   def create
     Message.create(messages_params)
-    redirect_to user_messages_path
+    redirect_to new_user_message_path
   end
 
   private

@@ -27,6 +27,17 @@
                     %p.chat_frind_name
                       = friend.name
       .right.div
-        aaaa
+        / - current_user.chat_groups.each do |chat_group|
+        /   %li.chat-group
+        /     %a.chat-group__link{ href: chat_group_messages_path(chat_group) }
+        /       %p.chat-group__name= chat_group.name
+        /       %p.chat-group__message
+        /         - if last_message = chat_group.messages.last
+        /           - if last_message.image?
+        /             画像を送信しました。
+        /           - else
+        /             = last_message.body
+        /         - else
+        /           まだメッセージはありません。
 
 
