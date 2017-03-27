@@ -6,7 +6,6 @@
           %i.fa.fa-user.fa-2x
         %li#right
           %i.fa.fa-commenting.fa-2x
-
     .contents
       .left.div
         .chat-group-form__search.clearfix
@@ -24,7 +23,7 @@
             - if @friends.length != 0
               - @friends.each do |friend|
                 %li.user_friend
-                  = link_to user_messages_path(friend) do
+                  = link_to new_user_message_path(friend) do
                     %p.chat_frind_name
                       = friend.name
       .right.div
