@@ -13,18 +13,11 @@
           - if message.image
             = image_tag(message.image)
 .message-footer
-  / = form_tag("/users/#{params[:user_id]}/messages", method: :post) do
-  /   .message-footer__body
-  /     %textarea{name: :body, types: :text}
-  /     %label.message-footer__file
-  /       %image{ name: :image}
-  /       %i.fa.fa-image
-  /     %hiden_field{ value: "#{params[:user_id]}" }
-  /   %input{type: :submit, value: "sent"}
   = form_for [@partner, @message] do |f|
     .message-footer__body
       = f.text_field :body
       %label.message-footer__file
         = f.file_field :image
         %i.fa.fa-image
+    = f.hidden_field :group_id, value: @group
     = f.submit "send", id: 'submit'

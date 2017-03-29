@@ -27,17 +27,17 @@
                     %p.chat_frind_name
                       = friend.name
       .right.div
-        / - current_user.chat_groups.each do |chat_group|
-        /   %li.chat-group
-        /     %a.chat-group__link{ href: chat_group_messages_path(chat_group) }
-        /       %p.chat-group__name= chat_group.name
-        /       %p.chat-group__message
-        /         - if last_message = chat_group.messages.last
-        /           - if last_message.image?
-        /             画像を送信しました。
-        /           - else
-        /             = last_message.body
-        /         - else
-        /           まだメッセージはありません。
+        - current_user.groups.each do |group|
+          %li.chat-group
+            %a.chat-group__link{ href: new_user_message_path(group.messages.first.user_id) }
+              %p.chat-group__name= group.messages.first.user.name
+              %p.chat-group__message
+                - if last_message = group.messages.last
+                  - if last_message.image?
+                    画像を送信しました。
+                  - else
+                    = last_message.body
+                - else
+                  まだメッセージはありません。
 
 
