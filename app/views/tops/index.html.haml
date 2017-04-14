@@ -13,31 +13,37 @@
         #user-serch-result
         .UserPage
           %ul.Profile
-            %p プロフィール
-            %li
-              = link_to edit_user_registration_path do
+            %p.tab プロフィール
+            %li.user
+              - if current_user.avatar.present?
+                .image{style: "background-image: url(#{@current_user.avatar.url(:medium)});", class: "user__icon"}
+              - else
+                %img{src: "usericon2.jpg", class: "user__icon"}
+              = link_to edit_user_path(current_user) ,class: "user__name" do
                 = current_user.name
           %ul.user_friends
             %li
-              %p 友達(#{@friends.length})
-            - if @friends.length != 0
-              - @friends.each do |friend|
-                %li.user_friend
-                  = link_to new_user_message_path(friend) do
-                    %p.chat_frind_name
+              %p.tab  友達(#{@friends.length})
+              - if @friends.length != 0
+                - @friends.each do |friend|
+                  %li.user
+                    %img{src: "usericon2.jpg", class: "user__icon"}
+                    = link_to new_user_message_path(friend), class: "user__name" do
                       = friend.name
       .right.div
         - current_user.groups.each do |group|
-          %li.chat-group
-            %a.chat-group__link{ href: new_user_message_path(group.messages.first.user_id) }
-              %p.chat-group__name= group.messages.first.user.name
-              %p.chat-group__message
-                - if last_message = group.messages.last
-                  - if last_message.image?
-                    画像を送信しました。
+          - if group.messages.first.present?
+            %li.chat-groups
+              %a.chat-group__link{ href: new_user_message_path(group.messages.first.user_id) }
+                %p.chat-group__name= group.messages.first.user.name
+                %p.chat-group__message
+                  - if last_message = group.messages.last
+                    - if last_message.image?
+                      画像を送信しました。
+                    - else
+                      = last_message.body
                   - else
-                    = last_message.body
-                - else
-                  まだメッセージはありません。
+                    まだメッセージはありません。
+
 
 

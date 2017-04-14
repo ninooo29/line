@@ -18,22 +18,39 @@
 .contents {
   background-color: #fff;
   height: 360px;
-  padding: 20px;
   .left{
     .UserPage
       ul {
         margin: 0;
         display: table;
         width: 100%;
-        p{
-          font-size: 8px;
-          color: black;
+        .tab {
+          padding: 5px;
+          font-size: 12px;
+          color: gray;
+          background-color: #F5F5F5;
+        }
+        .user{
+          height: 65px;
         }
         li{
+          font-size: 12px;
           list-style: none;
           vertical-align: middle;
-          height: 15px;
           font-size: 15px;
+          .user__icon {
+            height: 45px;
+            width: 45px;
+            border-radius: 75px;
+            float: left;
+            margin:10px 0 0 10px;
+          }
+          .user__name {
+            position: absolute;
+            line-height: 65px;
+            margin: 0 0 0 8px;
+            float: left;
+          }
         }
       }
   }
@@ -47,7 +64,13 @@ i{
   color: white;
 }
 
+.chat-group-form__search{
+  padding: 4px;
+  background-color: #EEEEEE;
+}
+
 .chat-group-form__input {
+  height: 20px;
   width: 100%;
 }
 
@@ -86,10 +109,9 @@ i{
   .chat-group__link {
     display: block;
     padding: 20px 20px;
-    color: #fff;
 
     &:hover {
-      background-color: #384a62;
+      background-color: #EEEEEE;
     }
   }
 
@@ -108,12 +130,6 @@ i{
     white-space: nowrap;
   }
 }
-
-
-
-
-
-
 
 
 
