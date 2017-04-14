@@ -6,18 +6,18 @@
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'
       = link_to "トップページに戻る", :back, class: 'btn'
     .account-page__inner--right.user-form
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-        = devise_error_messages!
+      = form_for(current_user) do |f|
+        / = devise_error_messages!
+        .field
+          .field-label
+            = f.label :avatar
+          .field-label
+            = f.file_field :avatar, placeholder: "画像アップロード"
         .field
           .field-label
             = f.label :name
           .field-input
             = f.text_field :name, autofocus: true
-        .field
-          .field-label
-            = f.label :UserId
-          .field-input
-            = f.text_field :UserId
         .field
           .field-label
             = f.label :email

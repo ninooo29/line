@@ -1,51 +1,49 @@
-
 - if user_signed_in?
-  .header
-    %ul.tabnav
-      %li
-        = link_to "#tab01" do
+  .tab-menu
+    .header
+      %ul
+        %li#left.selected
           %i.fa.fa-user.fa-2x
-      %li
-        = link_to "tab2" do
+        %li#right
           %i.fa.fa-commenting.fa-2x
-      %li
-        = link_to "#tab03" do
-          %i.fa.fa-clock-o.fa-2x
-      %li
-        = link_to "#tab04" do
-          %i.fa.fa-gear.fa-2x
-    = link_to "ログアウト", destroy_user_session_path, method: :delete
-    .chat-group-form__search.clearfix
-      %input#user-search-field.chat-group-form__input{ type: "text", placeholder: "名前で検索" }
-    #user-serch-result
+    .contents
+      .left.div
+        .chat-group-form__search.clearfix
+          %input#user-search-field.chat-group-form__input{ type: "text", placeholder: "名前で検索" }
+        #user-serch-result
+        .UserPage
+          %ul.Profile
+            %p.tab プロフィール
+            %li.user
+              - if current_user.avatar.present?
+                .image{style: "background-image: url(#{@current_user.avatar.url(:medium)});", class: "user__icon"}
+              - else
+                %img{src: "usericon2.jpg", class: "user__icon"}
+              = link_to edit_user_path(current_user) ,class: "user__name" do
+                = current_user.name
+          %ul.user_friends
+            %li
+              %p.tab  友達(#{@friends.length})
+              - if @friends.length != 0
+                - @friends.each do |friend|
+                  %li.user
+                    %img{src: "usericon2.jpg", class: "user__icon"}
+                    = link_to new_user_message_path(friend), class: "user__name" do
+                      = friend.name
+      .right.div
+        - current_user.groups.each do |group|
+          - if group.messages.first.present?
+            %li.chat-groups
+              %a.chat-group__link{ href: new_user_message_path(group.messages.first.user_id) }
+                %p.chat-group__name= group.messages.first.user.name
+                %p.chat-group__message
+                  - if last_message = group.messages.last
+                    - if last_message.image?
+                      画像を送信しました。
+                    - else
+                      = last_message.body
+                  - else
+                    まだメッセージはありません。
 
 
-#tabcontent
-  #tab01
-    .UserPage
-      %ul.Profile
-        %p プロフィール
-        %li
-          = link_to edit_user_registration_path do
-            = current_user.name
-      %ul.user_friends
-        %li
-          %p 友達(#{@friends.length})
-        - if @friends.length != 0
-          - @friends.each do |friend|
-            %li.user_friend
-              = link_to user_messages_path(friend) do
-                %p.chat_frind_name
-                  = friend.name
-
-
-
-  #tab02
-    .message
-      .user_name
-      .last_message
-  #tab03
-    タブ3の内容
-  #tab04
-    タブ４だよ
 

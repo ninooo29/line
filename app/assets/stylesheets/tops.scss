@@ -1,7 +1,4 @@
-
-
 .header{
-
   ul {
     background-color: #778899;
     display: table;
@@ -16,47 +13,140 @@
       height: 40px;
     }
   }
-
 }
+
+.contents {
+  background-color: #fff;
+  height: 360px;
+  .left{
+    .UserPage
+      ul {
+        margin: 0;
+        display: table;
+        width: 100%;
+        .tab {
+          padding: 5px;
+          font-size: 12px;
+          color: gray;
+          background-color: #F5F5F5;
+        }
+        .user{
+          height: 65px;
+        }
+        li{
+          font-size: 12px;
+          list-style: none;
+          vertical-align: middle;
+          font-size: 15px;
+          .user__icon {
+            height: 45px;
+            width: 45px;
+            border-radius: 75px;
+            float: left;
+            margin:10px 0 0 10px;
+          }
+          .user__name {
+            position: absolute;
+            line-height: 65px;
+            margin: 0 0 0 8px;
+            float: left;
+          }
+        }
+      }
+  }
+  .right {
+    display: none;
+  }
+}
+
 
 i{
   color: white;
 }
 
+.chat-group-form__search{
+  padding: 4px;
+  background-color: #EEEEEE;
+}
+
 .chat-group-form__input {
+  height: 20px;
   width: 100%;
 }
 
+.chat-group-user {
+  padding: 0 15px;
+  line-height: 50px;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+  text-align: right;
 
-.UserPage
-  ul {
-    margin: 0;
-    display: table;
-    width: 100%;
-    p{
-      font-size: 8px;
-      color: black;
+  &__name {
+    float: left;
+  }
+
+  &__btn {
+    display: inline-block;
+    cursor: pointer;
+
+    &--add {
+      color: #38aef0;
+    }
+
+    &--remove {
+      color: #f05050;
+    }
+  }
+}
+
+
+.chat-groups {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  list-style: none;
+
+  .chat-group__link {
+    display: block;
+    padding: 20px 20px;
+
+    &:hover {
+      background-color: #EEEEEE;
     }
   }
 
-
-
-
-.UserPage
-  ul {
-    margin: 0;
-
-    display: table;
-    width: 100%;
-
-    p{
-      font-size: 8px;
-    }
-
-    li{
-      list-style: none;
-      vertical-align: middle;
-      height: 15px;
-      font-size: 15px;
-    }
+  .chat-group__name {
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 5px;
   }
+
+  .chat-group__message {
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
